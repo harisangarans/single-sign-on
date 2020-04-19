@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Single Sign ON</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="assets/bootstrap.min.css">
+<script src="assets/jquery.min.js"></script>
+</head>
+<body>
+	<script type="text/javascript" src="js/main.js"></script>
+
+
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Hello <span
+					th:text="${user_name}"></span></a>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a id="account" th:href="@{'http://localhost:8082/client'}"><span
+						class="glyphicon glyphicon-user"></span> Account Management</a></li>
+				<li><form action="#" style="margin-top: 7px;"
+						th:action="@{/logout}" method="post">
+						<input class="btn btn-danger" type="submit" value="Logout" />
+					</form></li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="container">
+		<h1>User list</h1>
+
+		<table class="table">
+			<tr>
+				<th>Index</th>
+				<th>User Name</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+			</tr>
+			<tr th:each="user,iter : ${users}">
+				<td th:text="${iter.index+1}"></td>
+				<td th:text="${user.uid}"></td>
+				<td th:text="${user.firstName}"></td>
+				<td th:text="${user.lastName}"></td>
+			</tr>
+		</table>
+	</div>
+
+
+</body>
+</html>
