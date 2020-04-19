@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Account</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="assets/bootstrap.min.css">
+<script src="assets/jquery.min.js"></script>
+</head>
+<body>
+	<script type="text/javascript" src="js/main.js"></script>
+
+
+	<nav class="navbar">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Hello <span
+					th:text="${user_name}"></span></a>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a id="home" th:href="@{'http://localhost:8081/client'}"><span
+						class="glyphicon glyphicon-home"></span> Home</a></li>
+				<li><form action="#" style="margin-top: 7px;"
+						th:action="@{/logout}" method="post">
+						<input class="btn btn-danger" type="submit" value="Logout" />
+					</form></li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="container">
+		<h1>Create a User</h1>
+		<form onsubmit="return validation()" action="#" th:action="@{/}" th:object="${USER}" method="post">
+			<div class="form-group">
+				<label for="uname">Username:</label> <input id="uname"
+					class="form-control" type="text" th:field="*{uid}" />
+			</div>
+			<div class="form-group">
+				<label for="fname">First Name:</label> <input class="form-control"
+					id="fname" type="text" th:field="*{firstName}" />
+			</div>
+			<div class="form-group">
+				<label for="lname">Last Name:</label> <input class="form-control"
+					id="lname" type="text" th:field="*{lastName}" />
+			</div>
+			<div class="form-group">
+				<label for="pwd">Password:</label> <input id="pwd" type="password"
+					class="form-control" th:field="*{password}" />
+			</div>
+			<p>
+				<input class="btn btn-primary" type="submit" value="Submit" /> <input
+					type="reset" class="btn btn-secondary" value="Reset" onclick="reset()"/>
+			</p>
+
+		</form>
+		<div th:if="${code == 200}" class="alert alert-success">
+			<strong>Success!</strong> User has been created !.
+		</div>
+		<div th:if="${code == 500}" class="alert .alert-danger">
+			<strong>Error!</strong> user not created !.
+		</div>
+	</div>
+
+
+</body>
+</html>
