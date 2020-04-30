@@ -1,4 +1,4 @@
-# single-sign-on
+# single-sign-on with single logout
 A single sign on project using Spring boot,Spring Security and Spring LDAP
 This is a Java Maven multimodule application containing: 
 
